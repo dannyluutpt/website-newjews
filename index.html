@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewJews — Trang sức chế tác riêng | Custom Fine Jewelry</title>
+  <meta name="description" content="NewJews — xưởng chế tác trang sức theo yêu cầu. Nhẫn cưới, dây chuyền, bông tai vàng 18K và kim cương tự nhiên, thiết kế riêng cho câu chuyện của bạn." />
+  <meta name="theme-color" content="#0B0B0D" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NewJews — Trang sức chế tác riêng" />
+  <meta property="og:description" content="Mỗi món trang sức là một tác phẩm thủ công, thiết kế riêng cho câu chuyện của bạn." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts: Cormorant Garamond (display) + Be Vietnam Pro (body, hỗ trợ tiếng Việt) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B0B0D'/%3E%3Cpath d='M16 6l5 6-5 14-5-14z' fill='none' stroke='%23C9A227' stroke-width='1.4'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#top" class="brand" aria-label="NewJews — Trang chủ">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="30" height="30"><path d="M16 4l6 7-6 17-6-17z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M10 11h12" stroke="currentColor" stroke-width="1.3"/></svg>
+        </span>
+        <span class="brand-text">New<span class="brand-accent">Jews</span></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Điều hướng chính">
+        <a href="#collections" class="nav-link">Bộ sưu tập</a>
+        <a href="#categories" class="nav-link">Danh mục</a>
+        <a href="#shop" class="nav-link">Sản phẩm</a>
+        <a href="#why" class="nav-link">Vì sao chọn</a>
+        <a href="#reviews" class="nav-link">Đánh giá</a>
+        <a href="#custom" class="nav-link nav-link--cta">Đặt thiết kế riêng</a>
+      </nav>
+
+      <!-- Action group: LUÔN căn sát mép phải ở mọi kích thước -->
+      <div class="header-actions">
+        <button class="icon-btn search-btn" type="button" aria-label="Tìm kiếm">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn cart-btn" type="button" id="cartToggle" aria-label="Mở giỏ hàng" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 7h14l-1.2 11.2A2 2 0 0 1 15.8 20H8.2a2 2 0 0 1-2-1.8L5 7z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 7V6a3 3 0 0 1 6 0v1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="cart-count" id="cartCount" data-count="0">0</span>
+        </button>
+        <button class="icon-btn hamburger" type="button" id="hamburger" aria-label="Mở menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Signature: hairline gold rule that "scribes" across the header -->
+    <span class="header-rule" aria-hidden="true"></span>
+  </header>
+
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <main id="main">
+    <span id="top"></span>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img class="lazy-img hero-img" alt=""
+             data-src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1600&q=80"
+             data-fallback="ring" />
+        <span class="hero-veil"></span>
+        <span class="hero-grain"></span>
+      </div>
+
+      <div class="hero-content">
+        <p class="eyebrow reveal" data-reveal>
+          <span class="eyebrow-tick" aria-hidden="true"></span>
+          Xưởng chế tác trang sức theo yêu cầu · Est. 2014
+        </p>
+        <h1 class="hero-title">
+          <span class="line reveal" data-reveal>Trang sức</span>
+          <span class="line reveal" data-reveal data-delay="90">chế tác <em class="sheen">riêng</em></span>
+          <span class="line reveal" data-reveal data-delay="180">cho câu chuyện của bạn</span>
+        </h1>
+        <p class="hero-sub reveal" data-reveal data-delay="260">
+          Từ phác thảo đầu tiên đến tác phẩm hoàn thiện — mỗi chiếc nhẫn, dây chuyền hay
+          bông tai được thợ kim hoàn NewJews chế tác thủ công bằng vàng 18K và kim cương tự nhiên.
+        </p>
+        <div class="hero-cta reveal" data-reveal data-delay="340">
+          <a href="#custom" class="btn btn--gold">Đặt thiết kế riêng</a>
+          <a href="#collections" class="btn btn--ghost">Khám phá bộ sưu tập</a>
+        </div>
+        <div class="hero-trust reveal" data-reveal data-delay="420">
+          <span>Bảo hành trọn đời</span><span class="dot"></span>
+          <span>Giấy kiểm định GIA</span><span class="dot"></span>
+          <span>Giao hàng toàn quốc</span>
+        </div>
+      </div>
+
+      <a href="#marquee" class="scroll-cue" aria-label="Cuộn xuống">
+        <span class="scroll-cue-line"></span>
+      </a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" id="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Chế tác thủ công</span><span class="sep">✦</span>
+        <span>Vàng 18K &amp; Platinum</span><span class="sep">✦</span>
+        <span>Kim cương tự nhiên</span><span class="sep">✦</span>
+        <span>Khắc tên miễn phí</span><span class="sep">✦</span>
+        <span>Thiết kế độc bản</span><span class="sep">✦</span>
+        <span>Bảo hành trọn đời</span><span class="sep">✦</span>
+        <span>Chế tác thủ công</span><span class="sep">✦</span>
+        <span>Vàng 18K &amp; Platinum</span><span class="sep">✦</span>
+        <span>Kim cương tự nhiên</span><span class="sep">✦</span>
+        <span>Khắc tên miễn phí</span><span class="sep">✦</span>
+        <span>Thiết kế độc bản</span><span class="sep">✦</span>
+        <span>Bảo hành trọn đời</span><span class="sep">✦</span>
+      </div>
+    </div>
+
+    <!-- ============ CATEGORIES ============ -->
+    <section class="section categories" id="categories">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-reveal><span class="eyebrow-tick"></span>Danh mục</p>
+          <h2 class="section-title reveal" data-reveal>Bắt đầu từ điều bạn yêu thích</h2>
+        </header>
+        <div class="cat-grid">
+          <a href="#shop" class="cat-card reveal" data-reveal data-filter="nhan">
+            <span class="cat-media"><img class="lazy-img" alt="Nhẫn cưới và nhẫn đính hôn" data-src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80" data-fallback="ring" /></span>
+            <span class="cat-info"><span class="cat-name">Nhẫn</span><span class="cat-meta">42 mẫu</span></span>
+          </a>
+          <a href="#shop" class="cat-card reveal" data-reveal data-delay="80" data-filter="daychuyen">
+            <span class="cat-media"><img class="lazy-img" alt="Dây chuyền vàng" data-src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80" data-fallback="necklace" /></span>
+            <span class="cat-info"><span class="cat-name">Dây chuyền</span><span class="cat-meta">28 mẫu</span></span>
+          </a>
+          <a href="#shop" class="cat-card reveal" data-reveal data-delay="160" data-filter="bongtai">
+            <span class="cat-media"><img class="lazy-img" alt="Bông tai kim cương" data-src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80" data-fallback="earring" /></span>
+            <span class="cat-info"><span class="cat-name">Bông tai</span><span class="cat-meta">35 mẫu</span></span>
+          </a>
+          <a href="#shop" class="cat-card reveal" data-reveal data-delay="240" data-filter="lactay">
+            <span class="cat-media"><img class="lazy-img" alt="Lắc tay vàng" data-src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80" data-fallback="bracelet" /></span>
+            <span class="cat-info"><span class="cat-name">Lắc tay</span><span class="cat-meta">19 mẫu</span></span>
+          </a>
+          <a href="#custom" class="cat-card cat-card--feature reveal" data-reveal data-delay="320">
+            <span class="cat-media"><img class="lazy-img" alt="Dịch vụ thiết kế riêng" data-src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80" data-fallback="ring" /></span>
+            <span class="cat-info">
+              <span class="cat-name">Thiết kế riêng</span>
+              <span class="cat-meta">Đặt theo yêu cầu →</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS / COUNT-UP ============ -->
+    <section class="section stats" id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat reveal" data-reveal>
+            <span class="stat-num" data-count="11" data-suffix="">0</span>
+            <span class="stat-label">Năm chế tác</span>
+          </div>
+          <div class="stat reveal" data-reveal data-delay="80">
+            <span class="stat-num" data-count="4200" data-suffix="+">0</span>
+            <span class="stat-label">Tác phẩm hoàn thiện</span>
+          </div>
+          <div class="stat reveal" data-reveal data-delay="160">
+            <span class="stat-num" data-count="3800" data-suffix="+">0</span>
+            <span class="stat-label">Khách hàng tin chọn</span>
+          </div>
+          <div class="stat reveal" data-reveal data-delay="240">
+            <span class="stat-num" data-count="12" data-suffix="">0</span>
+            <span class="stat-label">Nghệ nhân kim hoàn</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLLECTIONS / EDITORIAL ============ -->
+    <section class="section collection-split" id="collections">
+      <div class="container split-grid">
+        <div class="split-media reveal" data-reveal>
+          <span class="frame-line" aria-hidden="true"></span>
+          <img class="lazy-img" alt="Bộ sưu tập Lumière — nhẫn kim cương" data-src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1000&q=80" data-fallback="ring" />
+        </div>
+        <div class="split-text">
+          <p class="eyebrow reveal" data-reveal><span class="eyebrow-tick"></span>Bộ sưu tập mới</p>
+          <h2 class="section-title reveal" data-reveal>Lumière —<br>ánh sáng của riêng bạn</h2>
+          <p class="lead reveal" data-reveal data-delay="80">
+            Lấy cảm hứng từ những khoảnh khắc không thể lặp lại, Lumière là bộ sưu tập nhẫn
+            đính hôn được cắt giác thủ công để bắt trọn ánh sáng — đúng như cách mỗi câu chuyện
+            tình yêu là duy nhất.
+          </p>
+          <ul class="feature-list reveal" data-reveal data-delay="160">
+            <li>Kim cương cắt giác brilliant 57 mặt</li>
+            <li>Ổ chấu vàng trắng 18K hoặc platinum</li>
+            <li>Khắc tên &amp; toạ độ kỷ niệm miễn phí</li>
+          </ul>
+          <a href="#shop" class="btn btn--gold reveal" data-reveal data-delay="220">Xem bộ sưu tập</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SHOP / PRODUCT GRID + FILTER ============ -->
+    <section class="section shop" id="shop">
+      <div class="container">
+        <header class="section-head section-head--row">
+          <div>
+            <p class="eyebrow reveal" data-reveal><span class="eyebrow-tick"></span>Cửa hàng</p>
+            <h2 class="section-title reveal" data-reveal>Tác phẩm nổi bật</h2>
+          </div>
+          <div class="filters reveal" data-reveal data-delay="120" role="tablist" aria-label="Lọc sản phẩm">
+            <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">Tất cả</button>
+            <button class="filter-btn" data-filter="nhan" role="tab" aria-selected="false">Nhẫn</button>
+            <button class="filter-btn" data-filter="daychuyen" role="tab" aria-selected="false">Dây chuyền</button>
+            <button class="filter-btn" data-filter="bongtai" role="tab" aria-selected="false">Bông tai</button>
+            <button class="filter-btn" data-filter="lactay" role="tab" aria-selected="false">Lắc tay</button>
+          </div>
+        </header>
+
+        <div class="product-grid" id="productGrid">
+          <!-- Products injected by script.js -->
+        </div>
+        <p class="grid-empty" id="gridEmpty" hidden>Chưa có sản phẩm trong danh mục này.</p>
+      </div>
+    </section>
+
+    <!-- ============ PROMO / COUNTDOWN ============ -->
+    <section class="section promo" id="promo">
+      <div class="container promo-inner">
+        <div class="promo-text reveal" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-tick"></span>Ưu đãi có hạn</p>
+          <h2 class="section-title">Giảm 15% cho đơn đặt thiết kế riêng</h2>
+          <p class="lead">Đặt cọc thiết kế trong tuần này để nhận ưu đãi 15% phí chế tác và miễn phí khắc tên.
+            Số lượng suất nhận trong tháng có hạn.</p>
+          <a href="#custom" class="btn btn--gold">Nhận ưu đãi ngay</a>
+        </div>
+        <div class="countdown reveal" data-reveal data-delay="120" id="countdown" aria-label="Thời gian còn lại của ưu đãi">
+          <div class="cd-unit"><span class="cd-num" data-cd="days">00</span><span class="cd-lbl">Ngày</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="hours">00</span><span class="cd-lbl">Giờ</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="mins">00</span><span class="cd-lbl">Phút</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="secs">00</span><span class="cd-lbl">Giây</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY CHOOSE ============ -->
+    <section class="section why" id="why">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-reveal><span class="eyebrow-tick"></span>Vì sao chọn NewJews</p>
+          <h2 class="section-title reveal" data-reveal>Khác biệt nằm ở từng chi tiết</h2>
+        </header>
+        <div class="why-grid">
+          <article class="why-card reveal" data-reveal>
+            <span class="why-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M16 3l4 7 4 19-8-6-8 6 4-19z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+            </span>
+            <h3 class="why-title">Thủ công 100%</h3>
+            <p>Mỗi tác phẩm được chế tác bằng tay bởi nghệ nhân kim hoàn, không sản xuất hàng loạt.</p>
+          </article>
+          <article class="why-card reveal" data-reveal data-delay="80">
+            <span class="why-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M16 4l3 5 3 14-6-4-6 4 3-14z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="9" r="1.4" fill="currentColor"/></svg>
+            </span>
+            <h3 class="why-title">Kim cương kiểm định</h3>
+            <p>Đá quý tự nhiên đi kèm giấy kiểm định GIA, minh bạch nguồn gốc và chất lượng.</p>
+          </article>
+          <article class="why-card reveal" data-reveal data-delay="160">
+            <span class="why-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M6 16a10 10 0 1 1 10 10" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M16 10v6l4 2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </span>
+            <h3 class="why-title">Bảo hành trọn đời</h3>
+            <p>Đánh bóng, làm mới và kiểm tra ổ đá miễn phí trọn đời cho mọi sản phẩm.</p>
+          </article>
+          <article class="why-card reveal" data-reveal data-delay="240">
+            <span class="why-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M16 4l9 5v7c0 6-4 9-9 11-5-2-9-5-9-11V9z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 16l3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3 class="why-title">Đổi trả 30 ngày</h3>
+            <p>Không hài lòng? Đổi mẫu hoặc hoàn tiền trong 30 ngày, không điều kiện ràng buộc.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CUSTOM / PROCESS ============ -->
+    <section class="section process" id="custom">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-reveal><span class="eyebrow-tick"></span>Quy trình đặt riêng</p>
+          <h2 class="section-title reveal" data-reveal>Bốn bước đến tác phẩm của bạn</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal" data-reveal>
+            <span class="step-no">01</span>
+            <h3>Lắng nghe</h3>
+            <p>Chia sẻ ý tưởng, ngân sách và câu chuyện. Chuyên viên tư vấn cùng bạn phác thảo concept.</p>
+          </li>
+          <li class="step reveal" data-reveal data-delay="80">
+            <span class="step-no">02</span>
+            <h3>Thiết kế 3D</h3>
+            <p>Bạn duyệt bản dựng 3D chân thực và chỉnh sửa đến khi ưng ý hoàn toàn.</p>
+          </li>
+          <li class="step reveal" data-reveal data-delay="160">
+            <span class="step-no">03</span>
+            <h3>Chế tác</h3>
+            <p>Nghệ nhân đúc, gắn đá và hoàn thiện thủ công trong 10–18 ngày.</p>
+          </li>
+          <li class="step reveal" data-reveal data-delay="240">
+            <span class="step-no">04</span>
+            <h3>Bàn giao</h3>
+            <p>Nhận tác phẩm cùng giấy kiểm định, hộp quà và bảo hành trọn đời.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-reveal><span class="eyebrow-tick"></span>Khách hàng nói gì</p>
+          <h2 class="section-title reveal" data-reveal>Niềm tin được chế tác cùng thời gian</h2>
+        </header>
+        <div class="reviews-grid">
+          <figure class="review-card reveal" data-reveal>
+            <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
+            <blockquote>Nhẫn cưới của tụi mình đẹp hơn cả tưởng tượng. Đội ngũ tư vấn cực kỳ tỉ mỉ,
+              chỉnh sửa thiết kế đến khi hoàn hảo.</blockquote>
+            <figcaption><span class="rv-name">Minh &amp; Hà</span><span class="rv-meta">Nhẫn cưới đặt riêng</span></figcaption>
+          </figure>
+          <figure class="review-card reveal" data-reveal data-delay="80">
+            <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
+            <blockquote>Mình đặt dây chuyền khắc toạ độ nơi cầu hôn. Chất lượng vàng và kim cương
+              vượt mong đợi, đóng gói sang trọng.</blockquote>
+            <figcaption><span class="rv-name">Thu Trang</span><span class="rv-meta">Dây chuyền Lumière</span></figcaption>
+          </figure>
+          <figure class="review-card reveal" data-reveal data-delay="160">
+            <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
+            <blockquote>Dịch vụ chuyên nghiệp từ A–Z, bản 3D giúp mình hình dung rõ ràng trước khi chế tác.
+              Sẽ quay lại cho dịp kỷ niệm.</blockquote>
+            <figcaption><span class="rv-name">Quốc Anh</span><span class="rv-meta">Bông tai kim cương</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="section newsletter" id="newsletter">
+      <div class="container news-inner reveal" data-reveal>
+        <div class="news-text">
+          <h2 class="section-title">Nhận thư từ xưởng NewJews</h2>
+          <p class="lead">Bộ sưu tập mới, ưu đãi riêng tư và những câu chuyện chế tác — gửi tới hộp thư của bạn.</p>
+        </div>
+        <form class="news-form" id="newsForm" novalidate>
+          <label class="visually-hidden" for="newsEmail">Email của bạn</label>
+          <input type="email" id="newsEmail" name="email" placeholder="email@cuaban.com" autocomplete="email" required />
+          <button type="submit" class="btn btn--gold">Đăng ký</button>
+          <p class="news-msg" id="newsMsg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="#top" class="brand brand--footer">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="28" height="28"><path d="M16 4l6 7-6 17-6-17z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M10 11h12" stroke="currentColor" stroke-width="1.3"/></svg></span>
+          <span class="brand-text">New<span class="brand-accent">Jews</span></span>
+        </a>
+        <p class="footer-about">Xưởng chế tác trang sức theo yêu cầu. Vàng 18K, platinum và kim cương tự nhiên —
+          thiết kế riêng cho câu chuyện của bạn.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram" class="social"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook" class="social"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M14 8h2V5h-2c-2 0-3 1.3-3 3.2V10H9v3h2v6h3v-6h2.2l.5-3H14V8.5c0-.3.2-.5.5-.5z" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="TikTok" class="social"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M14 4c.4 2.2 1.8 3.6 4 3.9V11c-1.6 0-3-.5-4-1.3V15a5 5 0 1 1-5-5v3a2 2 0 1 0 2 2V4h3z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Mua sắm</h4>
+        <ul><li><a href="#shop">Nhẫn</a></li><li><a href="#shop">Dây chuyền</a></li><li><a href="#shop">Bông tai</a></li><li><a href="#shop">Lắc tay</a></li><li><a href="#custom">Thiết kế riêng</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul><li><a href="#why">Chính sách bảo hành</a></li><li><a href="#custom">Quy trình đặt riêng</a></li><li><a href="#shop">Hướng dẫn chọn size</a></li><li><a href="#reviews">Đánh giá</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="contact-list">
+          <li>123 Lê Lợi, Quận 1, TP.HCM</li>
+          <li><a href="tel:+84909123456">0909 123 456</a></li>
+          <li><a href="mailto:xin-chao@newjews.vn">xin-chao@newjews.vn</a></li>
+          <li>9:00 – 21:00 mỗi ngày</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> NewJews. Website mẫu phục vụ giới thiệu dịch vụ thiết kế web.</p>
+      <p class="footer-pay">Thanh toán an toàn · Visa · Mastercard · Momo · VNPay</p>
+    </div>
+  </footer>
+
+  <!-- ============ CART DRAWER ============ -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Giỏ hàng" role="dialog" aria-modal="true">
+    <div class="cart-head">
+      <h2 class="cart-title">Giỏ hàng <span id="cartItemsCount">(0)</span></h2>
+      <button class="icon-btn cart-close" id="cartClose" type="button" aria-label="Đóng giỏ hàng">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <p class="cart-empty" id="cartEmpty">Giỏ hàng của bạn đang trống.<br><span>Hãy thêm một tác phẩm bạn yêu thích.</span></p>
+      <ul class="cart-items" id="cartItems"></ul>
+    </div>
+    <div class="cart-foot">
+      <div class="cart-total-row"><span>Tạm tính</span><span class="cart-total" id="cartTotal">0₫</span></div>
+      <p class="cart-note">Phí vận chuyển và ưu đãi áp dụng khi thanh toán.</p>
+      <button class="btn btn--gold btn--block" id="checkoutBtn" type="button" disabled>Tiến hành thanh toán</button>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cartOverlay" hidden></div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
