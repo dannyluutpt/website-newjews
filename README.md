@@ -25,6 +25,18 @@ script.js     — giỏ hàng, bộ lọc, reveal, parallax, count-up, countdown
 .nojekyll     — để GitHub Pages phục vụ file tĩnh nguyên trạng
 ```
 
+## 🧭 Chính sách hỗ trợ trình duyệt
+
+Áp dụng theo [Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance) (Google Chrome):
+cho phép dùng các tính năng **Baseline Newly Available**, nhưng luôn **feature-detect** và
+**progressive enhancement**, không dùng polyfill.
+
+- **Ảnh LCP** (hero) tải sớm với `fetchpriority="high"`; ảnh dưới màn dùng `loading="lazy"` + `decoding="async"`.
+- **Scroll-driven animations** (reveal khi cuộn + parallax hero) bằng CSS `animation-timeline: view()`,
+  có `@supports` và fallback `IntersectionObserver` cho trình duyệt chưa hỗ trợ (vd. Firefox).
+- **`content-visibility: auto`** cho các phần sâu dưới trang để tăng tốc render.
+- Tôn trọng `prefers-reduced-motion`: tắt mọi chuyển động khi người dùng yêu cầu.
+
 ## 🚀 Bật GitHub Pages
 
 1. Vào **Settings → Pages**.
