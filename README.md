@@ -12,6 +12,7 @@ build step, deploy tĩnh được ngay.
 - Header dính (sticky), menu hamburger trên mobile, nhóm nút (tìm kiếm / giỏ hàng / menu) **luôn căn sát mép phải**.
 - Hero parallax với CTA, dải marquee chạy, danh mục, **lưới sản phẩm có bộ lọc**.
 - **Giỏ hàng hoạt động đầy đủ**: thêm / tăng-giảm số lượng / xoá / tính tổng (lưu bằng `localStorage`).
+- **Trang thanh toán** (`checkout.html`): tóm tắt đơn hàng, mã giảm giá (thử `NEWJEWS15`), form giao hàng với `autocomplete`/`inputmode`/`:user-invalid`, chọn phương thức thanh toán (COD / chuyển khoản / ví / thẻ) và màn xác nhận đặt hàng thành công.
 - Đếm số (count-up), **đồng hồ đếm ngược** khuyến mãi, lý do chọn, đánh giá khách hàng, đăng ký nhận tin, footer đầy đủ.
 - Ảnh sản phẩm dùng **ảnh thật** (Unsplash), `object-fit: cover`, **fade-in khi tải**, và **ảnh dự phòng SVG** nếu ảnh lỗi (không bao giờ "vỡ ảnh").
 - Responsive hoàn chỉnh cho điện thoại, hỗ trợ `prefers-reduced-motion`, có skip-link và focus rõ ràng.
@@ -19,9 +20,13 @@ build step, deploy tĩnh được ngay.
 ## 📁 Cấu trúc
 
 ```
-index.html    — nội dung & bố cục
-styles.css    — toàn bộ giao diện, animation, responsive
+index.html    — trang chủ: nội dung & bố cục
+checkout.html — trang thanh toán
+styles.css    — giao diện trang chủ, animation, responsive
+checkout.css  — giao diện trang thanh toán (dùng chung design token)
+data.js       — danh mục sản phẩm + helpers (dùng chung 2 trang)
 script.js     — giỏ hàng, bộ lọc, reveal, parallax, count-up, countdown
+checkout.js   — tóm tắt đơn, mã giảm giá, validate form, xác nhận đặt hàng
 .nojekyll     — để GitHub Pages phục vụ file tĩnh nguyên trạng
 ```
 
