@@ -37,6 +37,8 @@
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
   function markLoaded(img) { img.classList.add("loaded"); }
+  // Images use native loading="lazy" + decoding="async" in the markup; JS only
+  // adds a graceful fade-in once decoded and an on-brand SVG fallback on error.
   function handleImg(img) {
     img.addEventListener("error", function onErr() {
       img.removeEventListener("error", onErr);
@@ -48,25 +50,11 @@
     if (img.complete && img.naturalWidth > 0) markLoaded(img);
     else img.addEventListener("load", () => markLoaded(img), { once: true });
   }
-  // Lazy-load any [data-src] image via IntersectionObserver
-  const imgIO = "IntersectionObserver" in window
-    ? new IntersectionObserver((entries, obs) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          const img = e.target;
-          handleImg(img);
-          img.src = img.getAttribute("data-src");
-          obs.unobserve(img);
-        });
-      }, { rootMargin: "200px 0px" })
-    : null;
-
-  function setupImage(img) {
-    if (!img.getAttribute("data-src")) { handleImg(img); return; }
-    if (imgIO) imgIO.observe(img);
-    else { handleImg(img); img.src = img.getAttribute("data-src"); }
-  }
+  const setupImage = handleImg;
+  // Fade-in candidates plus the eager LCP hero image (for its error fallback).
   $$(".lazy-img").forEach(setupImage);
+  const heroImgEl = $(".hero-img");
+  if (heroImgEl) handleImg(heroImgEl);
 
   /* ---------- Year ---------- */
   const yearEl = $("#year");
@@ -94,37 +82,50 @@
   backdrop.addEventListener("click", () => setNav(false));
   $$(".nav-link", nav).forEach((a) => a.addEventListener("click", () => setNav(false)));
 
-  /* ---------- Scroll reveal ---------- */
-  const revealEls = $$("[data-reveal], .step");
-  if (prefersReduced || !("IntersectionObserver" in window)) {
-    revealEls.forEach((el) => el.classList.add("in-view"));
+  /* ---------- Reveal & parallax ----------
+     Scroll-driven CSS animations (see styles.css) handle section reveals and
+     the hero parallax natively in supporting browsers. JS only:
+       - plays the hero intro on load (a one-time entrance, not scroll-tied),
+       - falls back to IntersectionObserver where scroll-driven isn't supported,
+       - reveals everything immediately under prefers-reduced-motion. */
+  const supportsSDA = !!(window.CSS && CSS.supports &&
+    CSS.supports("(animation-timeline: view()) and (animation-range: entry)"));
+
+  // Hero intro — always a load-time entrance.
+  const heroReveals = $$(".hero [data-reveal]");
+  if (prefersReduced) {
+    heroReveals.forEach((el) => el.classList.add("in-view"));
   } else {
+    requestAnimationFrame(() => heroReveals.forEach((el) => {
+      const delay = parseInt(el.getAttribute("data-delay") || "0", 10);
+      setTimeout(() => el.classList.add("in-view"), delay);
+    }));
+  }
+
+  // Section reveals — CSS scroll-driven when available, IO fallback otherwise.
+  const sectionReveals = $$(".section [data-reveal]");
+  if (prefersReduced || !("IntersectionObserver" in window)) {
+    sectionReveals.forEach((el) => el.classList.add("in-view"));
+  } else if (!supportsSDA) {
     const revIO = new IntersectionObserver((entries, obs) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
-        const el = e.target;
-        const delay = parseInt(el.getAttribute("data-delay") || "0", 10);
-        setTimeout(() => el.classList.add("in-view"), delay);
-        obs.unobserve(el);
+        const delay = parseInt(e.target.getAttribute("data-delay") || "0", 10);
+        setTimeout(() => e.target.classList.add("in-view"), delay);
+        obs.unobserve(e.target);
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    revealEls.forEach((el) => revIO.observe(el));
-  }
+    sectionReveals.forEach((el) => revIO.observe(el));
+  } // else: native scroll-driven CSS reveals them.
 
-  /* ---------- Hero parallax ---------- */
-  const heroImg = $(".hero-img");
-  if (heroImg && !prefersReduced) {
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const y = Math.min(window.scrollY, window.innerHeight);
-        heroImg.style.transform = `translateY(${y * 0.18}px) scale(1.04)`;
-        ticking = false;
-      });
-    }, { passive: true });
-  }
+  // Process-step underline — a one-shot trigger, kept on IO across all browsers.
+  const steps = $$(".step");
+  if ("IntersectionObserver" in window) {
+    const stepIO = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in-view"); obs.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    steps.forEach((el) => stepIO.observe(el));
+  } else steps.forEach((el) => el.classList.add("in-view"));
 
   /* ---------- Count-up stats ---------- */
   function countUp(el) {
@@ -214,7 +215,7 @@
         <button class="pc-fav" type="button" aria-label="Yêu thích ${p.name}" data-fav="${p.id}">
           <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 7 2.5C19 15.5 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
         </button>
-        <img class="lazy-img" alt="${p.name}" data-src="${p.img}" data-fallback="${p.fb}" />
+        <img class="lazy-img" alt="${p.name}" loading="lazy" decoding="async" width="700" height="700" src="${p.img}" data-fallback="${p.fb}" />
       </div>
       <div class="pc-body">
         <span class="pc-cat">${p.catLabel}</span>
@@ -330,7 +331,7 @@
       const li = document.createElement("li");
       li.className = "cart-item";
       li.innerHTML = `
-        <div class="ci-media"><img class="lazy-img" alt="${p.name}" src="${p.img}" data-fallback="${p.fb}" /></div>
+        <div class="ci-media"><img class="lazy-img" alt="${p.name}" loading="lazy" decoding="async" width="64" height="64" src="${p.img}" data-fallback="${p.fb}" /></div>
         <div class="ci-info">
           <span class="ci-name">${p.name}</span>
           <span class="ci-price">${fmt(p.price)}</span>
